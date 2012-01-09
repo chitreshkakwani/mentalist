@@ -32,7 +32,8 @@ class NaiveBayesClassifier:
 		#print self.index
 
 	def classify(self, tweet):
-		#Set the prior probability, which is assumed to be 0.5 for each category
+		# Calculate the prior probability for each category based on the number
+		# of tweets seen so far in each category
 		self.prior["pos"] = self.categoryTweetCounts["pos"]/self.tweetCount
 		self.prior["neg"] = self.categoryTweetCounts["neg"]/self.tweetCount
 		tokens = tweet.split()
