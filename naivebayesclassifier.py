@@ -32,13 +32,23 @@ class NaiveBayesClassifier:
 		#print self.index
 
 	def classify(self, tweet):
-		# Calculate the prior probability for each category based on the number
-		# of tweets seen so far in each category
+		
+		#Set the prior probability, which is assumed to be 0.5 for each category
 		self.prior["pos"] = self.categoryTweetCounts["pos"]/self.tweetCount
 		self.prior["neg"] = self.categoryTweetCounts["neg"]/self.tweetCount
 		tokens = tweet.split()
+		#print tokens
+		#Removing noise words from the list of tokens
+		lines = [line.strip() for line in open("noise_words")]
+		lines.sort()
+		print lines
+		tokens = set(tokens)-set(lines)
+		
+			
+
+			
 		categoryScores = {"pos":1, "neg":1}
-	
+		print tokens	
 		#print self.index	
 		for category in self.categories:
 			#print category
@@ -46,7 +56,7 @@ class NaiveBayesClassifier:
 				# Get the count of token in the category
 				count = self.index[token][category]
 				# For each token calculate category scores
-				categoryScores[category] *= (count + 1)/(self.categoryTokenCounts[category] + self.tokenCount)
+			categoryScores[category] *= (count + 1)/(self.categoryTokenCounts[category] + self.tokenCount)
 			
 			categoryScores[category] = self.prior[category] * categoryScores[category]
 
