@@ -8,5 +8,5 @@ urlpatterns = patterns('',
     # redirect all urls to the twitter_auth app
     (r'^', include('twitter_auth.urls')),
     (r'^tweets/$',views.getTweets),
-    (r'^login/$', views.login_user),		
+    (r'^login/$', views.login_user),
 )
