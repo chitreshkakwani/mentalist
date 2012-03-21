@@ -4,8 +4,13 @@ from django.http import *
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
+<<<<<<< HEAD
 import pickle,hashlib 
 import data_preprocess
+=======
+import pickle
+
+>>>>>>> 89aa7e23b0b2789d0986b7c01aff694715d5590b
 from django.contrib.auth import authenticate, login
 from twitter_auth.models import data_set
 from utils import *
@@ -118,7 +123,11 @@ def getTweets(request):
             result = api.search(query)
             #Convert each tweet in the result to string
             #and add it to a list
+<<<<<<< HEAD
             tweets=[query]
+=======
+            tweets=[]
+>>>>>>> 89aa7e23b0b2789d0986b7c01aff694715d5590b
             for tweet in result:
                     try:
                             tweets.append(str(tweet.text))
@@ -168,12 +177,17 @@ def save_tweets(request):
         and write the positive and negative marked tweets
         into corresponding files after the breaking the
         tweets into tokens"""
+<<<<<<< HEAD
         m = hashlib.md5()
+=======
+        
+>>>>>>> 89aa7e23b0b2789d0986b7c01aff694715d5590b
         for index in request.POST:
                 (ind,a)=index.split(':')
                 if request.POST.get(index,''):
                         if(request.POST[index]=='pos'):
                                 out_file=open("positive.txt",'a')
+<<<<<<< HEAD
 				m.update(current_tweets[int(a)-1])		
                                 p=data_set(tweet=current_tweets[int(a)-1],tweet_hash=m.hexdigest(),pos_neg='pos',movie_name=current_tweets[0])
                                 p.save()
@@ -186,6 +200,11 @@ def save_tweets(request):
                         data_preprocess.remove_noise_words(tokens)
                         data_preprocess.remove_names(tokens)
                         data_preprocess.remove_links(tokens)
+=======
+                        else:
+                                out_file=open("negative.txt",'a')
+                        tokens=current_tweets[int(a)-1].split()
+>>>>>>> 89aa7e23b0b2789d0986b7c01aff694715d5590b
                         for token in tokens:
                                 out_file.write(token+'\n')
         return render_to_response("tweetsSaved.html")
