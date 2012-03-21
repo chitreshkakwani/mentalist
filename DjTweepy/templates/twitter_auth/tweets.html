@@ -3,12 +3,18 @@
 	The Searched Results
 </head>
 <body>
+      <form method='post' action='/save_tweets/'>
 	{% for tweet in tweets%}
 	<p>	
 		<b>
-		{{ tweet.text}}
+		
+		     {{ tweet }}
+		     <br/><input type="radio" name="posneg:{{forloop.counter}}" value="pos" /> Positive<br />
+                     <input type="radio" name="posneg:{{forloop.counter}}" value="neg" /> Negative
 		</b>
 	</p>	
 	{% endfor %}
+	<input type='submit' value='Done'>
+	</form>
 </body>
 </html>

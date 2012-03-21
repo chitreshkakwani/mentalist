@@ -1,3 +1,4 @@
+
 from django.conf.urls.defaults import *
 from twitter_auth.views import *
 
@@ -7,4 +8,5 @@ urlpatterns = patterns('twitter_auth.views',
     url(r'^logout/$', view=unauth, name='oauth_unauth'),
     url(r'^auth/$', view=auth, name='oauth_auth'),
     url(r'^info/$', view=info, name='info'),
+    url(r'^save_tweets',view=save_tweets,name='save_tweets'),
 )
